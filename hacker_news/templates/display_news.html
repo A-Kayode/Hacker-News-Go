@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block search_form %}
+<span></span>
+{% endblock search_form %}
+
+{% block body %}
+<h3>{{nitem.title | title}}</h3>
+
+<div class="row mb-4"><div class= "col">
+{% if nitem.text != "" %}
+<div class= "row"><div class= 'col'>{{nitem.text | safe}}</div></div>
+{% endif %}
+{% if nitem.url != "" %}
+<div class= "row py-2"><div class= 'col'>
+	<div class= "mb-3">Read full story <a href= "{{nitem.url}}" target= "blank">here</a></div>
+</div></div>
+{% endif %}
+</div></div>
+
+<div class= "row">
+	<div class= "col">
+		<h4>Comments</h4>
+
+		{% if nitem.comment_no != 0 %}
+		{% for i in comm %}
+		<div class= "row">
+			<div class= "col">
+				<small>{{i.written_by}} on {{i.created.strftime('%B %d, %Y')}}</small>
+				<p>{{i.text | safe}}</p>
+			</div>
+		</div>
+		{% endfor %}
+		{% else %}
+		<p><i>This post has no comments</i></p>
+		{% endif %}
+	</div>
+</div>
+{% endblock body %}

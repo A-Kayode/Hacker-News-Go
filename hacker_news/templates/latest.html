@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}News{% endblock title %}
+
+{% block body %}
+{% if lname == 'news/all' or lname == 'news/askhacker' or lname == 'news/showhacker' %}
+<div class= "row">
+	<div class= "col">
+		<span><b>Filters: </b>
+			<a href= "/news/all/" class= "btn btn-outline-info mx-3 btn-sm">All News</a>
+			<a href= "/news/askhacker/" class= "btn btn-outline-info mx-3 btn-sm">Ask Hacker News</a>
+			<a href= "/news/showhacker/" class= "btn btn-outline-info mx-3 btn-sm">Show Hacker News</a>
+		</span>
+	</div>
+</div>
+{% endif %}
+
+<div class= "row my-3">
+	<div class= "col text-center">
+		<h3>{% if lname == 'news/all' %}Latest News{% elif lname == 'jobs' %}Latest Jobs{% elif lname == 'news/askhacker' %}Ask Hacker News{% elif lname == 'news/showhacker' %}Show Hacker News{% endif %}</h3>
+	</div>
+</div>
+
+
+<div class= "row">
+	<div class= "col">
+		{% include 'news_list.html' %}
+	</div>
+</div>
+
+{% endblock body %}

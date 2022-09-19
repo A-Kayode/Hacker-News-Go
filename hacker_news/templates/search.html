@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock title %}
+
+{% block body %}
+<div class= "row">
+	<div class= "col">
+		<h3>Search Results</h3>
+	</div>
+</div>
+
+{% if npo.items != [] %}
+<div class= "row">
+	<div class= "col">
+		{% include 'news_list.html' %}
+	</div>
+</div>
+{% else %}
+<div class= "row">
+	<div class= "col">
+		<p>No {{stype}} results for '{{sitem}}'</p>
+	</div>
+</div>
+{% endif %}
+
+{% endblock body %}

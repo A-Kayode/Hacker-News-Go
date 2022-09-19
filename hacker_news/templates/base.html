@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name= "viewport" content= "width=device-width, initial-scale=1">
+<link rel= "stylesheet" href="{{url_for('static', filename='libraries/bootstrap/css/bootstrap.css')}}">
+<link rel= "stylesheet" href="{{url_for('static', filename='custom_files/stylesheet.css')}}">
+<title>HNG | {% block title %}{% endblock title %}</title>
+<style>
+	div{border: 0px solid red;}
+</style>
+{% block internal_style %}{% endblock internal_style %}
+</head>
+
+<body>
+<div class= "container">
+<div class= "row bg-secondary py-3">
+	<div class= "col">
+		<h1><a href= "{{url_for('home')}}" class="nav-link text-light">Hacker News Go</a></h1>
+	</div>
+	<div class= "col">
+		<ul class= "nav justify-content-end align-items-center">
+			<li class= "nav-item mx-3">
+				<a href= "/news/all/" class= "btn btn-outline-light">Latest News</a>
+			</li>
+			<li class= "nav-item mx-3">
+				<a href= "{{url_for('jobs')}}" class= "btn btn-outline-light">Jobs</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<div class= "row" style= "min-height: 85vh;"><div class= "col">
+<div class= "row justify-content-center my-3">
+	<div class= "col-6 text-center">
+		{% block search_form %}
+		<form action= "{{url_for('search')}}">
+			<div class= "col mb-2">
+				<label class= "form-label">Search the News and Find Jobs</label>
+				<input type= "text" class= "form-control" name= "sitem">
+			</div>
+			<div class= "mb-2">
+				{% if stype == 'news' %}
+				<input type= "radio" class= "form-check-input" name= "stype" value= "news" id= "news_radio" checked>
+				{% else %}
+				<input type= "radio" class= "form-check-input" name= "stype" value= "news" id= "news_radio">
+				{% endif %}
+				<label class= "form-check-label" for= "news_radio">News</label>
+				{% if stype == 'jobs' %}
+				<input type= "radio" class= "form-check-input" name= "stype" value= "jobs" id= "jobs_radio" checked>
+				{% else %}
+				<input type= "radio" class= "form-check-input" name= "stype" value= "jobs" id= "jobs_radio">
+				{% endif %}
+				<label class= "form-check-label" for= "jobs_radio">Jobs</label>
+			</div>
+			<div class= "col">
+				<button class= "btn btn-secondary">Search</button>
+			</div>
+		</form>
+		{% endblock search_form %}
+	</div>
+</div>
+
+
+<div class= "row">
+	<div class= "col">{% block body %}{% endblock body %}</div>
+</div>
+</div></div>
+
+<div class= "row bg-secondary">
+	<div class= "col py-2">
+		<ul class= "nav justify-content-center">
+			<li class= "nav-item mx-3">
+				<a href= "/news/all/" class= "btn btn-outline-light">Latest News</a>
+			</li>
+			<li class= "nav-item mx-3">
+				<a href= "{{url_for('jobs')}}" class= "btn btn-outline-light">Jobs</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+</div>
+
+<script src= "{{url_for('static', filename='libraries/bootstrap/js/bootstrap.bundle.js')}}"></script>
+<script src= "{{url_for('static', filename='libraries/jquery.js')}}"></script>
+{% block external_scripts %}
+{% endblock external_scripts %}	
+</body>
+
+</html>
